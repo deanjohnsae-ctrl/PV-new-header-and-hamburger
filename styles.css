@@ -1224,6 +1224,17 @@ input:focus-visible {
 
   .is-subscriber-view .site-header__topics .site-header__topic-premium {
     display: inline-flex;
+    border-color: var(--gold-deep);
+    background: var(--cream);
+    color: var(--premium-text);
+    font-weight: 700;
+  }
+
+  .is-subscriber-view .site-header__topics .site-header__topic-premium:hover,
+  .is-subscriber-view .site-header__topics .site-header__topic-premium:focus-visible {
+    border-color: var(--gold-border);
+    background: #ffe8a0;
+    color: var(--premium-text);
   }
 }
 
