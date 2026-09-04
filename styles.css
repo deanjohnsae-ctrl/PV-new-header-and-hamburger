@@ -223,8 +223,7 @@ input:focus-visible {
   display: none;
 }
 
-.is-subscriber-view .mobile-bottomnav__badge-wrap,
-.is-subscriber-view .drawer__premium {
+.is-subscriber-view .mobile-bottomnav__badge-wrap {
   display: none;
 }
 
@@ -237,6 +236,10 @@ input:focus-visible {
 }
 
 .is-subscriber-view .site-header__premium-group > a:not(.site-header__topic-premium) {
+  display: none !important;
+}
+
+.is-subscriber-view .site-header__topic-premium {
   display: none !important;
 }
 
