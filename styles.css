@@ -1224,10 +1224,19 @@ input:focus-visible {
 
   .is-subscriber-view .site-header__topics .site-header__topic-premium {
     display: inline-flex;
+    min-width: 92px;
+    gap: 6px;
+    padding: 0 16px;
     border-color: var(--gold-deep);
     background: var(--cream);
     color: var(--premium-text);
     font-weight: 700;
+  }
+
+  .is-subscriber-view .site-header__topics .site-header__topic-premium svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
   }
 
   .is-subscriber-view .site-header__topics .site-header__topic-premium:hover,
