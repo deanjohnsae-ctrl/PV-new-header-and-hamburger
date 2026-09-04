@@ -223,23 +223,7 @@ input:focus-visible {
   display: none;
 }
 
-.is-subscriber-view .mobile-bottomnav__badge-wrap {
-  display: none;
-}
-
-.drawer-card--subscriber-premium {
-  display: none;
-}
-
-.is-subscriber-view .drawer-card--subscriber-premium {
-  display: block;
-}
-
 .is-subscriber-view .site-header__premium-group > a:not(.site-header__topic-premium) {
-  display: none !important;
-}
-
-.is-subscriber-view .site-header__topic-premium {
   display: none !important;
 }
 
@@ -1230,6 +1214,16 @@ input:focus-visible {
   .drawer__toolbar-btn svg {
     width: 26px;
     height: 26px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .is-subscriber-view .site-header__utility {
+    display: none;
+  }
+
+  .is-subscriber-view .site-header__topics .site-header__topic-premium {
+    display: inline-flex;
   }
 }
 
