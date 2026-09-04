@@ -1224,7 +1224,9 @@ input:focus-visible {
 
   .is-subscriber-view .site-header__topics .site-header__topic-premium {
     display: inline-flex;
+    align-self: stretch;
     min-width: 92px;
+    min-height: 40px;
     gap: 6px;
     padding: 0 16px;
     border-color: var(--gold-deep);
