@@ -223,6 +223,19 @@ input:focus-visible {
   display: none;
 }
 
+.is-subscriber-view .mobile-bottomnav__badge-wrap,
+.is-subscriber-view .drawer__premium {
+  display: none;
+}
+
+.drawer-card--subscriber-premium {
+  display: none;
+}
+
+.is-subscriber-view .drawer-card--subscriber-premium {
+  display: block;
+}
+
 .is-subscriber-view .site-header__premium-group > a:not(.site-header__topic-premium) {
   display: none !important;
 }
