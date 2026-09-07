@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ಪ್ರಜಾವಾಣಿ</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -14,7 +11,7 @@
     <div class="site-header__inner">
       <div class="site-header__top">
         <a href="#" class="site-header__logo" aria-label="ಪ್ರಜಾವಾಣಿ ಮುಖಪುಟ">
-          <span class="site-header__logo-text">ಪ್ರಜಾವಾಣಿ</span>
+          <img class="site-header__logo-image" src="file:///C:/Users/deanjohns.ae/Downloads/logo.png" alt="ಪ್ರಜಾವಾಣಿ">
         </a>
 
         <nav class="site-header__primary" aria-label="ಮುಖ್ಯ ವಿಭಾಗಗಳು">
@@ -74,7 +71,8 @@
         </a>
       </nav>
 
-      <nav class="site-header__topics" aria-label="ವಿಭಾಗಗಳು">
+      <div class="site-header__topics-shell">
+        <nav class="site-header__topics" aria-label="ವಿಭಾಗಗಳು">
         <div class="site-header__premium-group">
           <a href="#" class="site-header__topic-premium"><span data-icon="crown"></span> ಪ್ರೀಮಿಯಂ</a>
           <a href="#" class="is-active">ಇ-ಪೇಪರ್</a>
@@ -85,17 +83,42 @@
         <a href="#">ಸುದ್ದಿ</a>
         <a href="#">ವಾಸ್ತು-ಜ್ಯೋತಿಷ್ಯ</a>
         <a href="#">ಸಿನಿಮಾ ರಂಜನೆ</a>
-      </nav>
+        <a href="#">ಕ್ರೀಡೆ</a>
+        <a href="#">ವಾಣಿಜ್ಯ</a>
+        <a href="#">ತಂತ್ರಜ್ಞಾನ-ಆಟೋಮೊಬೈಲ್</a>
+        </nav>
+      </div>
     </div>
   </header>
 
   <main class="page">
-    <section class="body-placeholder" aria-label="ಮುಖ್ಯ ವಿಷಯ ಪ್ರದೇಶ">
-      <div class="body-placeholder__inner">
-        <p class="body-placeholder__eyebrow">Prajavani Navigation Prototype</p>
-        <h1>Responsive top nav and full-width hamburger menu</h1>
-        <p>ಮೊಬೈಲ್ ರೆಫರೆನ್ಸ್‌ಗೆ ಹತ್ತಿರವಾಗಿರುವ header ಮತ್ತು desktop ಗೆ ಕೂಡ ಅದೇ full-width drawer model ಬಳಸಲಾಗಿದೆ.</p>
+    <section class="news-home" aria-label="ಮುಖ್ಯ ಸುದ್ದಿ">
+      <div class="news-home__lead-column">
+        <a href="#" class="story story--lead">
+          <span class="story-media story-media--rain" role="img" aria-label="ಮಳೆಯಲ್ಲಿ ರಸ್ತೆಯ ದೃಶ್ಯ"></span>
+          <span class="story__title story__title--desktop">Karnataka Rains: ರಾಜ್ಯದಾದ್ಯಂತ, ವಿಜಯಪುರ ಜಿಲ್ಲೆಯಲ್ಲಿ ಉತ್ಕಟ ಮಳೆ,...</span>
+          <span class="story__title story__title--mobile">ಶ್ರೀಕೊಟ್ಟಲ ಟೊಮೆಟೊ ಬೆಳೆ ಈ ವರ್ಷ ಹೇಗಿದೆ: ಉತ್ತಮ ಬೆಲೆ ಪಡೆಯಲು ಮುಂದಾದ ರೈತರು</span>
+          <span class="story__summary story__summary--desktop">ದಕ್ಷಿಣ ಕರ್ನಾಟಕ ಭಾಗಗಳಿಗೆ ಉತ್ತರ ಕರ್ನಾಟಕ ಭಾಗದ ಹೆದ್ದಾರಿ ಕಡೆ ಮಳೆ</span>
+          <span class="story__summary story__summary--mobile">ಇಳುವರಿಯು ಉತ್ತಮ, ಬೆಲೆಯೂ ಚೆನ್ನಾಗಿದೆ: ರೈತರ ಮುಖದಲ್ಲಿ ಮಂದಹಾಸ</span>
+          <span class="story__meta">56 minutes ago</span>
+        </a>
+        <div class="story-grid">
+          <a href="#" class="story story--tile"><span class="story-media story-media--rally" role="img" aria-label="ಸಾರ್ವಜನಿಕ ಸಭೆಯ ದೃಶ್ಯ"></span><span class="story__title">ಉತ್ತರ ಪ್ರದೇಶ | ಭಾನುವಾರವೂ ಮಳೆ, ಮಹತ್ವದ ಪರ್ವ</span></a>
+          <a href="#" class="story story--tile"><span class="story-media story-media--station" role="img" aria-label="ರೈಲು ನಿಲ್ದಾಣದ ದೃಶ್ಯ"></span><span class="story__title">ದೇಶದ PG ಕಟ್ಟಡಕ್ಕೆ ಕ್ಯೂ: ಸುರಕ್ಷತೆ ಬಗ್ಗೆ ಪ್ರಶ್ನೆ</span></a>
+        </div>
       </div>
+      <section class="news-home__feed" aria-label="ಇತ್ತೀಚಿನ ಸುದ್ದಿ">
+        <a href="#" class="story story--list"><span class="story__title">ಕರ್ನಾಟಕದ ಹವಾಮಾನ, ದೊಡ್ಡ ಅಪ್ಡೇಟ್‌ಗಳು: ಈಶಾನ್ಯ ಭಾರತಕ್ಕೂ...</span><span class="story__meta">6 hours ago</span></a>
+        <a href="#" class="story story--list story--with-thumb"><span class="story__copy"><span class="story__title">ಬೆಂಗಳೂರಿನಲ್ಲಿ 4,800 ಕಿ.ಮೀ. ವ್ಯಾಪ್ತಿಯ ರಸ್ತೆ ಕಾಮಗಾರಿ</span><span class="story__meta">3 hours ago</span></span><span class="story-media story-media--pipes" role="img" aria-label="ನೀರಿನ ಪೈಪ್‌ಗಳ ದೃಶ್ಯ"></span></a>
+        <a href="#" class="story story--list story--with-thumb"><span class="story__copy"><span class="story__title">ವಿಡಿಯೋ: ಪೊಲೀಸ್ ಕಾರ್ಯಾಚರಣೆಯ ಸಂಪೂರ್ಣ ವಿವರ</span><span class="story__meta">1 hour ago</span></span><span class="story-media story-media--stage" role="img" aria-label="ಕಾರ್ಯಕ್ರಮದ ದೃಶ್ಯ"></span></a>
+        <a href="#" class="story story--list"><span class="story__title">ಲೋಕಸಭಾ ಚುನಾವಣೆ ಕುರಿತು ಹೊಸ ಚರ್ಚೆ; ಪ್ರಮುಖ ನಾಯಕರು ಪ್ರತಿಕ್ರಿಯೆ</span><span class="story__meta">4 hours ago</span></a>
+        <a href="#" class="story story--list story--with-thumb"><span class="story__copy"><span class="story__title">Bigg Boss Kannada 13: ಹೊಸ ಸ್ಪರ್ಧಿಗಳ ಘೋಷಣೆ</span><span class="story__meta">2 hours ago</span></span><span class="story-media story-media--group" role="img" aria-label="ಕಲಾವಿದರ ಗುಂಪು"></span></a>
+      </section>
+      <aside class="news-home__rail" aria-label="ಪ್ರಾಯೋಜಿತ ಮತ್ತು ವಿಶೇಷ ವಿಷಯ">
+        <div class="ad-card"><span class="ad-card__label">ಜಾಹೀರಾತು. <u>Go Ad Lite</u></span><div class="ad-card__body">EVERY HEARTBEAT COUNTS<br><small>ಆರೋಗ್ಯದ ಕುರಿತು ನಿಮ್ಮ ಪ್ರಯಾಣ</small></div><strong>ಹೃದಯ ಜೋಕೆ ಯಾತ್ರೆ</strong><span class="ad-card__footer">DHFWS GoK <b>Contact Us ›</b></span></div>
+        <a href="#" class="feature-card"><span class="feature-card__image"></span><span class="feature-card__label">ಇನ್ನಷ್ಟು →</span><span class="feature-card__title">ಇಂಟರ್ನೆಟ್‌ನಲ್ಲಿ ಜ್ಞಾನಮಾಹಿತಿ: ವಿಮಾನ ನಿಲ್ದಾಣಗಳ ಬಗ್ಗೆ ಪ್ರಯಾಣಿಕರ ಮಾಹಿತಿ</span><span class="story__meta">4 hours ago</span></a>
+        <a href="#" class="rail-link">ಸಂಪರ್ಕದಲ್ಲಿರಿ, ಇತ್ತೀಚಿನ ಸುದ್ದಿಗಳನ್ನು ಪಡೆಯಿರಿ</a>
+      </aside>
     </section>
   </main>
 
@@ -109,7 +132,7 @@
       <span>ಪಾಡ್‌ಕಾಸ್ಟ್</span>
     </a>
     <div class="mobile-bottomnav__badge-wrap">
-      <button class="premium-badge premium-badge--pop mobile-bottomnav__badge" type="button" data-premium-badge aria-label="ಪ್ರೀಮಿಯಂ ತೆರೆಯಿರಿ">
+      <button class="premium-badge premium-badge--pop mobile-bottomnav__badge" type="button" aria-label="ಪ್ರೀಮಿಯಂ">
         <span class="premium-badge__icon" data-icon="crown"></span>
       </button>
     </div>
@@ -172,7 +195,7 @@
       <div class="drawer__inner">
         <div class="drawer__topbar">
           <a href="#" class="drawer__brand" aria-label="ಪ್ರಜಾವಾಣಿ ಮುಖಪುಟ">
-            <span class="drawer__logo">ಪ್ರಜಾವಾಣಿ</span>
+            <img class="drawer__logo-image" src="file:///C:/Users/deanjohns.ae/Downloads/logo.png" alt="ಪ್ರಜಾವಾಣಿ">
             <span class="drawer__tagline">ಕನ್ನಡ ಪ್ರೆಸ್ ಸಂಸ್ಥೆ ಮೈಸೂರು</span>
           </a>
 

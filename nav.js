@@ -10,7 +10,15 @@
   var popup = document.getElementById("premium-popup");
   var gooStage = document.querySelector(".goo-stage");
   var gooBlob = document.querySelector(".goo-blob");
+  var siteHeader = document.querySelector(".site-header");
   var desktopBreakpoint = window.matchMedia("(min-width: 1024px)");
+  var lastScrollY = window.scrollY;
+  var lastScrollAt = Date.now();
+  var lastScrollDirection = "stationary";
+  var upwardBurstActive = false;
+  var upwardBurstCount = 0;
+  var upwardBurstStartedAt = 0;
+  var upwardBurstResetTimer = null;
 
   function qsa(selector, context) {
     return Array.prototype.slice.call((context || document).querySelectorAll(selector));
@@ -156,6 +164,91 @@
     });
   }
 
+  function updateCompactHeader() {
+    if (!siteHeader || desktopBreakpoint.matches) {
+      return;
+    }
+
+    var currentScrollY = window.scrollY;
+    var currentScrollAt = Date.now();
+    var subscriberView = document.body.classList.contains("is-subscriber-view");
+    var movingDown = currentScrollY > lastScrollY;
+    var movingUp = currentScrollY < lastScrollY;
+    var scrollingDown = currentScrollY > lastScrollY + 4;
+    var scrollingUp = currentScrollY < lastScrollY - 4;
+    var fastUpwardGesture = false;
+
+    if (movingDown || currentScrollY <= 8) {
+      upwardBurstActive = false;
+      upwardBurstCount = 0;
+      upwardBurstStartedAt = 0;
+      window.clearTimeout(upwardBurstResetTimer);
+    } else if (movingUp) {
+      if (!upwardBurstActive) {
+        if (!upwardBurstStartedAt || currentScrollAt - upwardBurstStartedAt > 600) {
+          upwardBurstCount = 0;
+          upwardBurstStartedAt = currentScrollAt;
+        }
+
+        upwardBurstCount += 1;
+        upwardBurstActive = true;
+
+        if (upwardBurstCount >= 2) {
+          fastUpwardGesture = true;
+          upwardBurstCount = 0;
+          upwardBurstStartedAt = 0;
+        }
+      }
+
+      window.clearTimeout(upwardBurstResetTimer);
+      upwardBurstResetTimer = window.setTimeout(function () {
+        upwardBurstActive = false;
+      }, 100);
+    }
+
+    if (subscriberView) {
+      if (currentScrollY <= 8) {
+        siteHeader.classList.remove("is-compact");
+        siteHeader.classList.remove("is-menu-hidden");
+        siteHeader.classList.remove("is-utility-hidden");
+        document.body.classList.remove("is-subscriber-bottom-hidden");
+      } else if (fastUpwardGesture) {
+        siteHeader.classList.remove("is-compact");
+        siteHeader.classList.remove("is-menu-hidden");
+        siteHeader.classList.remove("is-utility-hidden");
+        document.body.classList.remove("is-subscriber-bottom-hidden");
+      } else if (scrollingDown) {
+        siteHeader.classList.add("is-compact");
+        siteHeader.classList.add("is-menu-hidden");
+        siteHeader.classList.remove("is-utility-hidden");
+        document.body.classList.add("is-subscriber-bottom-hidden");
+      } else if (scrollingUp) {
+        siteHeader.classList.add("is-compact");
+        siteHeader.classList.remove("is-menu-hidden");
+        siteHeader.classList.add("is-utility-hidden");
+        document.body.classList.remove("is-subscriber-bottom-hidden");
+      }
+    } else if (currentScrollY <= 8 || scrollingUp) {
+      siteHeader.classList.remove("is-compact");
+      document.body.classList.remove("is-subscriber-bottom-hidden");
+    } else if (scrollingDown) {
+      siteHeader.classList.add("is-compact");
+      document.body.classList.remove("is-subscriber-bottom-hidden");
+    }
+
+    lastScrollY = currentScrollY;
+    lastScrollAt = currentScrollAt;
+    if (scrollingUp) {
+      lastScrollDirection = "up";
+    } else if (scrollingDown) {
+      lastScrollDirection = "down";
+    }
+  }
+
+  function bindScrollBehavior() {
+    window.addEventListener("scroll", updateCompactHeader, { passive: true });
+  }
+
   function bindEvents() {
     document.body.addEventListener("click", function (event) {
       var premiumTrigger = event.target.closest("[data-premium-badge]");
@@ -176,6 +269,10 @@
         var isSubscriberView = subscriberToggle.getAttribute("aria-pressed") === "true";
         subscriberToggle.setAttribute("aria-pressed", String(!isSubscriberView));
         document.body.classList.toggle("is-subscriber-view", !isSubscriberView);
+        document.body.classList.remove("is-subscriber-bottom-hidden");
+        siteHeader.classList.remove("is-compact");
+        siteHeader.classList.remove("is-menu-hidden");
+        siteHeader.classList.remove("is-utility-hidden");
         return;
       }
 
@@ -213,6 +310,10 @@
     desktopBreakpoint.addEventListener("change", function () {
       closeDrawer();
       closeAllSubmenus();
+      siteHeader.classList.remove("is-compact");
+      siteHeader.classList.remove("is-menu-hidden");
+      siteHeader.classList.remove("is-utility-hidden");
+      document.body.classList.remove("is-subscriber-bottom-hidden");
     });
   }
 
@@ -220,6 +321,7 @@
     buildIcons();
     preventSearchSubmit();
     bindEvents();
+    bindScrollBehavior();
   }
 
   if (document.readyState === "loading") {
