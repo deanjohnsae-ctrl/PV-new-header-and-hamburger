@@ -19,6 +19,7 @@
   var upwardBurstCount = 0;
   var upwardBurstStartedAt = 0;
   var upwardBurstResetTimer = null;
+  var subscriberBottomRevealTimer = null;
 
   function qsa(selector, context) {
     return Array.prototype.slice.call((context || document).querySelectorAll(selector));
@@ -208,32 +209,45 @@
 
     if (subscriberView) {
       if (currentScrollY <= 8) {
+        window.clearTimeout(subscriberBottomRevealTimer);
         siteHeader.classList.remove("is-compact");
         siteHeader.classList.remove("is-menu-hidden");
         siteHeader.classList.remove("is-utility-hidden");
         document.body.classList.remove("is-subscriber-bottom-hidden");
       } else if (fastUpwardGesture) {
+        window.clearTimeout(subscriberBottomRevealTimer);
         siteHeader.classList.remove("is-compact");
         siteHeader.classList.remove("is-menu-hidden");
         siteHeader.classList.remove("is-utility-hidden");
         document.body.classList.remove("is-subscriber-bottom-hidden");
       } else if (scrollingDown) {
+        window.clearTimeout(subscriberBottomRevealTimer);
         siteHeader.classList.add("is-compact");
-        siteHeader.classList.add("is-menu-hidden");
-        siteHeader.classList.remove("is-utility-hidden");
+        siteHeader.classList.remove("is-menu-hidden");
+        siteHeader.classList.add("is-utility-hidden");
         document.body.classList.add("is-subscriber-bottom-hidden");
       } else if (scrollingUp) {
+        window.clearTimeout(subscriberBottomRevealTimer);
         siteHeader.classList.add("is-compact");
         siteHeader.classList.remove("is-menu-hidden");
         siteHeader.classList.add("is-utility-hidden");
         document.body.classList.remove("is-subscriber-bottom-hidden");
       }
+
+      if (currentScrollY > 8) {
+        window.clearTimeout(subscriberBottomRevealTimer);
+        subscriberBottomRevealTimer = window.setTimeout(function () {
+          document.body.classList.remove("is-subscriber-bottom-hidden");
+        }, 3000);
+      }
     } else if (currentScrollY <= 8 || scrollingUp) {
       siteHeader.classList.remove("is-compact");
       document.body.classList.remove("is-subscriber-bottom-hidden");
+      document.body.classList.remove("is-nonsubscriber-bottom-hidden");
     } else if (scrollingDown) {
       siteHeader.classList.add("is-compact");
       document.body.classList.remove("is-subscriber-bottom-hidden");
+      document.body.classList.add("is-nonsubscriber-bottom-hidden");
     }
 
     lastScrollY = currentScrollY;
@@ -270,6 +284,8 @@
         subscriberToggle.setAttribute("aria-pressed", String(!isSubscriberView));
         document.body.classList.toggle("is-subscriber-view", !isSubscriberView);
         document.body.classList.remove("is-subscriber-bottom-hidden");
+        document.body.classList.remove("is-nonsubscriber-bottom-hidden");
+        window.clearTimeout(subscriberBottomRevealTimer);
         siteHeader.classList.remove("is-compact");
         siteHeader.classList.remove("is-menu-hidden");
         siteHeader.classList.remove("is-utility-hidden");
@@ -314,6 +330,7 @@
       siteHeader.classList.remove("is-menu-hidden");
       siteHeader.classList.remove("is-utility-hidden");
       document.body.classList.remove("is-subscriber-bottom-hidden");
+      document.body.classList.remove("is-nonsubscriber-bottom-hidden");
     });
   }
 
