@@ -484,6 +484,27 @@ input:focus-visible {
   }
 }
 
+/* Use repository-local assets in the deployed build. */
+.story-media--rain,
+.story-media--rally,
+.story-media--station,
+.story-media--pipes,
+.story-media--stage,
+.story-media--group {
+  background-image: url("assets/desktop-reference.png") !important;
+}
+
+.story-media--produce,
+.feature-card__image {
+  background-image: url("assets/mobile-reference.png") !important;
+}
+
+@media (max-width: 1023px) {
+  .story--lead .story-media {
+    background-image: url("assets/mobile-reference.png") !important;
+  }
+}
+
 .premium-badge--pop {
   animation: badge-pop 600ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
@@ -1282,6 +1303,21 @@ input:focus-visible {
   }
 }
 
+/* Repository-local editorial image assets for GitHub Pages. */
+.story-media--rally,
+.story-media--station,
+.story-media--pipes,
+.story-media--stage,
+.story-media--group {
+  background-image: url("assets/desktop-reference.png");
+}
+
+@media (max-width: 1023px) {
+  .story--lead .story-media {
+    background-image: url("assets/mobile-reference.png");
+  }
+}
+
 @media (min-width: 1024px) {
   .site-header__top {
     display: grid;
@@ -1710,13 +1746,13 @@ input:focus-visible {
 }
 
 .story-media--rain {
-  background-image: url("file:///C:/Users/deanjohns.ae/Pictures/Screenshots/Screenshot%202026-09-07%20123014.png");
+  background-image: url("assets/desktop-reference.png");
   background-position: -14px -164px;
 }
 
 .story-media--produce,
 .feature-card__image {
-  background-image: url("file:///C:/Users/deanjohns.ae/Pictures/Screenshots/Screenshot%202026-09-07%20123135.png");
+  background-image: url("assets/mobile-reference.png");
 }
 
 .story-media--rally { background-image: url("file:///C:/Users/deanjohns.ae/Pictures/Screenshots/Screenshot%202026-09-07%20123014.png"); background-position: -320px -642px; }
