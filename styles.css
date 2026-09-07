@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "Prajavani Text";
+  src: url("assets/PrajavaniTextRegular.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Prajavani Text";
+  src: url("assets/PrajavaniTextSemibold.ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 600 800;
+}
+
 :root {
   --brand-red: #b82831;
   --brand-red-dark: #9f0f1b;
@@ -875,6 +891,23 @@ input:focus-visible {
   background: var(--surface);
   scrollbar-width: none;
   -ms-overflow-style: none;
+}
+
+.drawer__quicklinks-shell {
+  position: relative;
+  overflow: hidden;
+}
+
+.drawer__quicklinks-shell::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 42px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), #ffffff 82%);
+  content: "";
+  pointer-events: none;
 }
 
 .drawer__quicklinks::-webkit-scrollbar {
