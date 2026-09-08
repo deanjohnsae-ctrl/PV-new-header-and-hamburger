@@ -31,6 +31,7 @@
 
   function buildIcons() {
     var icons = {
+      crown: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 7l5.5 3L12 5l3.5 5L21 7l-2 9H5zm2-2h10l.7-3.1-2.4 1.4L12 8.5 9.7 12.3 7.3 10.9 7 14z"></path><path d="M7 18h10v2H7z"></path></svg>',
       home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>',
       mic: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line><line x1="8" y1="22" x2="16" y2="22"></line></svg>',
       menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>',
@@ -47,9 +48,35 @@
     qsa("[data-icon]").forEach(function (element) {
       var iconName = element.getAttribute("data-icon");
 
+      if (iconName === "book" || iconName === "map") {
+        element.classList.add("magazine-icon");
+        element.innerHTML = "";
+        return;
+      }
+
+      if (iconName === "paper") {
+        element.classList.add("epaper-icon");
+        element.innerHTML = "";
+        return;
+      }
+
       if (iconName === "crown") {
-        element.classList.add("premium-icon");
-        element.innerHTML = '<img class="premium-icon-image" src="assets/premium-icon.svg" alt="" aria-hidden="true">';
+        var isProfileBadge =
+          element.classList.contains("site-header__profile-badge") ||
+          element.classList.contains("drawer__profile-badge");
+
+        if (document.body.classList.contains("is-subscriber-view") && isProfileBadge) {
+          element.classList.remove("premium-icon");
+          element.classList.remove("premium-profile-icon");
+          element.innerHTML = "";
+        } else if (!isProfileBadge) {
+          element.classList.add("premium-icon");
+          element.innerHTML = "";
+        } else {
+          element.classList.remove("premium-icon");
+          element.classList.remove("premium-profile-icon");
+          element.innerHTML = icons.crown;
+        }
         return;
       }
 
@@ -290,6 +317,7 @@
         var isSubscriberView = subscriberToggle.getAttribute("aria-pressed") === "true";
         subscriberToggle.setAttribute("aria-pressed", String(!isSubscriberView));
         document.body.classList.toggle("is-subscriber-view", !isSubscriberView);
+        buildIcons();
         document.body.classList.remove("is-subscriber-bottom-hidden");
         document.body.classList.remove("is-nonsubscriber-bottom-hidden");
         window.clearTimeout(subscriberBottomRevealTimer);
