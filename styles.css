@@ -1282,6 +1282,13 @@ body:not(.is-subscriber-view) .site-header__topics {
   display: block;
 }
 
+.drawer__premium-item > .premium-icon,
+.drawer__premium-item > .epaper-icon,
+.drawer__premium-item > .magazine-icon {
+  background-color: var(--brown-900);
+  color: var(--brown-900);
+}
+
 .drawer__premium-cta {
   display: flex;
   min-height: 52px;
