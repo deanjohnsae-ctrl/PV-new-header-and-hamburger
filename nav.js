@@ -60,7 +60,7 @@
         return;
       }
 
-      if (iconName === "crown") {
+      if (iconName === "crown" || iconName === "nandi") {
         var isProfileBadge =
           element.classList.contains("site-header__profile-badge") ||
           element.classList.contains("drawer__profile-badge");

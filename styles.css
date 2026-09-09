@@ -523,19 +523,24 @@ input:focus-visible {
 }
 
 .mobile-bottomnav__badge-wrap {
-  position: relative;
-  display: flex;
-  height: 100%;
+  display: inline-flex;
+  min-width: 0;
   flex: 1;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 4px;
 }
 
 .mobile-bottomnav__badge {
-  position: absolute;
-  top: -14px;
-  width: 56px;
-  height: 56px;
+  position: relative;
+  width: 48px;
+  height: 42px;
+  flex: 0 0 48px;
+  margin: 0;
+  flex-direction: column;
+  gap: 4px;
+  border-radius: 6px;
   overflow: hidden;
 }
 
@@ -553,8 +558,19 @@ input:focus-visible {
 }
 
 .mobile-bottomnav__badge .premium-badge__icon {
+  width: 16px;
+  height: 16px;
   position: relative;
   z-index: 1;
+}
+
+.mobile-bottomnav__premium-label {
+  color: var(--premium-text);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.45;
+  white-space: nowrap;
+  text-align: center;
 }
 
 .premium-badge {
@@ -2420,14 +2436,14 @@ body:not(.is-subscriber-view) .site-header__topics {
 
 @media (max-width: 1023px) {
   .page {
-    padding-bottom: 64px;
+    padding-bottom: 68px;
   }
 
   .mobile-bottomnav {
-    height: 52px;
+    height: 56px;
     align-items: center;
     justify-content: space-between;
-    padding: 0 12px 2px;
+    padding: 0 12px;
     border-top: 0;
     background: #ffffff;
   }
@@ -2471,8 +2487,14 @@ body:not(.is-subscriber-view) .site-header__topics {
   .mobile-bottomnav__badge {
     position: relative;
     top: 0;
-    width: 36px;
-    height: 36px;
+    width: 48px;
+    height: 35px;
+    min-width: 48px;
+    min-height: 35px;
+    flex: 0 0 48px;
+    padding-right: 4px;
+    padding-left: 4px;
+    gap: 0;
     border: 2px solid #d79c17;
     border-radius: 9px;
     background: #ffd34d;
@@ -2486,13 +2508,20 @@ body:not(.is-subscriber-view) .site-header__topics {
 
   .mobile-bottomnav__badge .premium-badge__icon,
   .mobile-bottomnav__badge .premium-badge__icon svg {
-    width: 24px;
-    height: 24px;
+    width: 21px;
+    height: 21px;
     color: #000000;
   }
 
   .mobile-bottomnav__badge .premium-badge__icon.premium-icon {
-    width: 24px;
-    height: 24px;
+    width: 21px;
+    height: 21px;
+  }
+
+  .mobile-bottomnav__badge .mobile-bottomnav__premium-label {
+    color: #000000;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
   }
 }
