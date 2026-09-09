@@ -63,10 +63,13 @@
       if (iconName === "crown" || iconName === "nandi") {
         var isProfileBadge =
           element.classList.contains("site-header__profile-badge") ||
-          element.classList.contains("drawer__profile-badge");
+          element.classList.contains("drawer__profile-badge") ||
+          (element.parentElement &&
+            (element.parentElement.classList.contains("site-header__profile-badge") ||
+              element.parentElement.classList.contains("drawer__profile-badge")));
 
         if (document.body.classList.contains("is-subscriber-view") && isProfileBadge) {
-          element.classList.remove("premium-icon");
+          element.classList.add("premium-icon");
           element.classList.remove("premium-profile-icon");
           element.innerHTML = "";
         } else if (!isProfileBadge) {
@@ -275,13 +278,18 @@
         }, 3000);
       }
     } else if (currentScrollY <= 8 || scrollingUp) {
+      window.clearTimeout(subscriberBottomRevealTimer);
       siteHeader.classList.remove("is-compact");
       document.body.classList.remove("is-subscriber-bottom-hidden");
       document.body.classList.remove("is-nonsubscriber-bottom-hidden");
     } else if (scrollingDown) {
+      window.clearTimeout(subscriberBottomRevealTimer);
       siteHeader.classList.add("is-compact");
       document.body.classList.remove("is-subscriber-bottom-hidden");
       document.body.classList.add("is-nonsubscriber-bottom-hidden");
+      subscriberBottomRevealTimer = window.setTimeout(function () {
+        document.body.classList.remove("is-nonsubscriber-bottom-hidden");
+      }, 3000);
     }
 
     lastScrollY = currentScrollY;
